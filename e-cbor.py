@@ -234,6 +234,22 @@ for packet in dns_packets:
                         (len(bytes(packet[DNS]))- len (cbor.dumps(Header) )), ',', 
                         (len(bytes(packet[DNS]))- len (cbor.dumps(Header) ))/len(bytes(packet[DNS])),
                    ", ==, ", packet[DNSQR].qtype)
+
+            p1 = len(bytes(packet[DNS]))- len (cbor.dumps(Header))
+
+            p2 = (p1/len(bytes(packet[DNS])))*100
+
+            wire = len(bytes(packet[DNS]))
+            ecborr = len (cbor.dumps(Header))
+
+            RESULTS = [str(wire), str(ecborr),  str(p2)]
+
+            with open("dns.csv",'a', newline = '', encoding = 'utf-8') as f:
+                writer = csv.writer(f,  dialect='excel-tab',  lineterminator = '\n')
+                writer.writerow(RESULTS)
+                f.close()
+
+
         else:
             packet[DNS].show()
 
@@ -297,6 +313,22 @@ for packet in dns_packets:
                    (len(bytes(packet[DNS]))- len (cbor.dumps(Header) )), ',', 
                    (len(bytes(packet[DNS]))- len (cbor.dumps(Header) ))/len(bytes(packet[DNS])),
                    ", ==, ", packet[DNSQR].qtype)
+            
+            p1 = len(bytes(packet[DNS]))- len (cbor.dumps(Header))
+
+            p2 = (p1/len(bytes(packet[DNS])))*100
+
+            wire = len(bytes(packet[DNS]))
+            ecborr = len (cbor.dumps(Header))
+
+            RESULTS = [str(wire), str(ecborr),  str(p2)]
+
+            with open("dns.csv",'a', newline = '', encoding = 'utf-8') as f:
+                writer = csv.writer(f,  dialect='excel-tab',  lineterminator = '\n')
+                writer.writerow(RESULTS)
+                f.close()
+
+
 
 
             internal_name = {}
