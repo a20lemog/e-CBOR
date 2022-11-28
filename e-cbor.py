@@ -147,14 +147,6 @@ def create_query (qr):
 def create_rr(rr, nb_elm):
     full_rr = []
     for i in range(nb_elm):
-        if i < nb_elm - 1 :
-            rr1 = binascii.hexlify(bytes(rr[i])).decode()
-            rr2 = binascii.hexlify(bytes(rr[2])).decode()
-            print (">",rr1)
-            print ("-",rr2)
-
-            print ("=", rr1.replace(rr2, ''))
-        print(binascii.hexlify(bytes(rr[i])))
         if rr[i].type == 1:  #A 
             """ [Type, name(ref), IPv4 address, TTL, (CLASS) ]"""
             c_rr = [1, ref_index[rr[i].rrname.decode()], socket.inet_aton(rr[i].rdata), rr[i].ttl]
@@ -171,14 +163,20 @@ def create_rr(rr, nb_elm):
         elif rr[i].type == 28: #AAAA
             """ [type, name(ref), IPv6 address, ttl, (class)] """
             c_rr = [28, ref_index[rr[i].rrname.decode()], socket.inet_pton(socket.AF_INET6,rr[i].rdata), rr[i].ttl]
-        elif rr[i].type == 41: #?????
-            """ [type, ] MUST BE ADDED"""
-            c_rr = [41, 0, 0,0]
         else:
-            print ("unkown type")
-            0/0
-        print (c_rr)
+            if i < nb_elm - 1 :
+                rr1 = binascii.hexlify(bytes(rr[i])).decode()
+                rr2 = binascii.hexlify(bytes(rr[i+1])).decode()
+                print (">",rr1)
+                print ("-",rr2)
+
+                c_rr = binascii.unhexlify(rr1.replace(rr2, ''))
+            else:
+                c_rr = bytes(rr[i])
+            print (full_rr)
+            print ("Unknown option", c_rr)
         full_rr.append(c_rr)
+        print(full_rr)
     
     return full_rr
 
@@ -270,11 +268,15 @@ for packet in dns_packets:
 
           
             Query = create_query(packet[DNSQR])
-            print (Query)
+            print ("<", Query)
         
             Answer = create_rr(packet[DNS].an, packet[DNS].ancount)
             Authority = create_rr(packet[DNS].ns, packet[DNS].nscount)
-            Additionnal = create_rr(packet[DNS].ar, packet[DNS].arcount)
+            Additional = create_rr(packet[DNS].ar, packet[DNS].arcount)
+
+            print (">", Answer)
+            print (">", Authority)
+            print (">", Additional)
 
             Header.append (Query)
             Header.append (name_ref)
@@ -282,11 +284,11 @@ for packet in dns_packets:
             Header.append (Authority)
             Header.append (Additional)
 
-            if Header[-1] in [None, []]: # remove Additional if empty
-                del Header[-1]
-
-            if Header[-1] in [None, []]: # remove Authority  if Add. and Auth. empty
-                del Header[-1]
+#            if Header[-1] in [None, []]: # remove Additional if empty
+#                del Header[-1]#
+#
+#            if Header[-1] in [None, []]: # remove Authority  if Add. and Auth. empty
+#                del Header[-1]
              
 
             pprint.pprint(Header)
