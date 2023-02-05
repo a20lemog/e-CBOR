@@ -1,4 +1,4 @@
-# e-cbor description
+# e-CBOR description
 
 e-CBOR (efficient Concise Binary Object Representation) is a method to optimize the size of DNS messages.
 
