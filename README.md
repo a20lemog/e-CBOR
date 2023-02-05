@@ -17,6 +17,7 @@ CBOR is more flexible and new fields can be transported in the messages to exten
   https://gitlab.imt-atlantique.fr/a20lemog/e-cbor.git
 - Run the command `python3 query.py` or `python3 query.py | grep ==` to see the DNS query. 
 - Run the command `python3 response.py` or `python3 response.py | grep ==` to see the DNS response.  
+- Clone https://gitlab.imt-atlantique.fr/a20lemog/e-cbor.git for DNSSEC implementation. 
 
 
 ### Future implementation
