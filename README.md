@@ -14,11 +14,11 @@ CBOR is more flexible and new fields can be transported in the messages to exten
 - Clone https://gitlab.imt-atlantique.fr/a20lemog/e-cbor.git repo where the implementation is located
   of a DNS request and response using the e-CBOR method.
 - The pcap files of the different resource records to be added in the code can be found in the repo:
-  `e-cbor/analysis/Data` and their implementation with e-CBOR approach in the rep `e-cbor/implementation/DNS using e-CBOR`
+  `e-cbor/analysis/Data` and their implementation with e-CBOR approach in the rep `e-cbor/implementation/DNS using e-CBOR`.
   
 - In rep `e-cbor/implementation/DNS using e-CBOR`, run the command `python3 query.py` or `python3 query.py | grep ==` to see the DNS query. 
   and the command `python3 response.py` or `python3 response.py | grep ==` to see the DNS response.  
-- Implementation for DNSSEC resource records can be found in the  rep  `e-cbor/implementation/DNSSEC using e-CBOR`
+- Implementation for DNSSEC resource records can be found in the  rep  `e-cbor/implementation/DNSSEC using e-CBOR`.
 
 
 ### Future implementation
