@@ -11,7 +11,7 @@ CBOR is more flexible and new fields can be transported in the messages to exten
 
 - Install [Scapy 2.5.O](https://scapy.readthedocs.io/en/latest/installation.html)
 - Install [wireshark 4.0.3](https://www.wireshark.org/download.html)
-- Clone https://gitlab.imt-atlantique.fr/a20lemog/e-cbor.git repo where the implementation is located
+- Clone [https://gitlab.imt-atlantique.fr/a20lemog/e-cbor.git](https://github.com/a20lemog/e-CBOR.git) repo where the implementation is located
   of a DNS request and response using the e-CBOR method.
 - The pcap files of the different resource records to be added in the code can be found in the repo:
   `e-cbor/analysis/Data` and their implementation with e-CBOR approach in the rep `e-cbor/implementation/DNS using e-CBOR`.
